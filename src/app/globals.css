@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-night: #0c0a12;
+  --color-surface: #15121d;
+  --color-raised: #1d1928;
+  --color-line: #2b2539;
+  --color-fg: #f1edf8;
+  --color-muted: #a79fbb;
+  --color-accent: #a58bff;
+  --color-warm: #ffb98a;
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-sans: var(--font-dm), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
+}
+
+::selection {
+  @apply bg-accent text-night;
+}
+
+:focus-visible {
+  @apply outline-2 outline-offset-4 outline-accent;
+}
+
+/* One orchestrated entrance in the hero. Delay comes from the --d variable. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise {
+    animation: none;
+  }
+}
